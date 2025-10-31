@@ -8,7 +8,7 @@ export default function About() {
         <div className="w-full max-w-3xl py-32">
           <h1 className="text-3xl font-semibold text-black dark:text-zinc-50 mb-6">About Me</h1>
           <p className="text-lg text-zinc-600 dark:text-zinc-400">
-            This is where I'll share my professional background, skills, and experiences.
+            This is where I&apos;ll share my professional background, skills, and experiences.
           </p>
         </div>
       </main>
