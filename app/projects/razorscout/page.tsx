@@ -323,12 +323,12 @@ export default function razorscout_page() {
                             </p>
 
                             <h2 className="mt-4 text-4xl font-semibold md:text-5xl">
-                                Related isn't enough.
+                                Related isn&apos;t enough.
                             </h2>
 
                             <p className="mt-6 text-lg leading-relaxed text-zinc-400">
                                 A simple similarity search can find products that are related
-                                to what a customer is buying. But related doesn't necessarily
+                                to what a customer is buying. But related doesn&apos;t necessarily
                                 mean complementary.
                             </p>
 
@@ -515,7 +515,7 @@ export default function razorscout_page() {
                         </h2>
 
                         <p className="mt-6 text-lg leading-relaxed text-zinc-400">
-                            The merchant doesn't just get an AI assistant. They can see
+                            The merchant doesn&apos;t just get an AI assistant. They can see
                             whether AI recommendations actually lead to additional purchases
                             and revenue.
                         </p>
