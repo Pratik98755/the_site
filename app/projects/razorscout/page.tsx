@@ -323,7 +323,7 @@ export default function razorscout_page() {
                             </p>
 
                             <h2 className="mt-4 text-4xl font-semibold md:text-5xl">
-                                Related isn not enough.
+                                Related is not enough.
                             </h2>
 
                             <p className="mt-6 text-lg leading-relaxed text-zinc-400">
