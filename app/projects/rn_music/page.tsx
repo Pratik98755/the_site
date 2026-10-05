@@ -137,7 +137,7 @@ export default function v5ibe_page() {
             {/* Download */}
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <a
-                href="/apps/v5ibe.apk"
+                href="https://github.com/Pratik98755/v5ibe/releases/download/v1.0.0/v5ibe.apk"
                 download
                 className="rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-zinc-200"
               >
@@ -511,7 +511,7 @@ export default function v5ibe_page() {
           <div className="mt-10 flex justify-center gap-4">
 
             <a
-              href="/apps/v5ibe.apk"
+              href="https://github.com/Pratik98755/v5ibe/releases/download/v1.0.0/v5ibe.apk"
               download
               className="rounded-full bg-white px-7 py-3 text-sm font-medium text-black transition hover:bg-zinc-200"
             >
