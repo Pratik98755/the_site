@@ -137,7 +137,8 @@ export default function v5ibe_page() {
             {/* Download */}
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <a
-                href="https://github.com/Pratik98755/v5ibe/releases/download/v1.0.0/v5ibe.apk"
+                href="https://release-assets.githubusercontent.com/github-production-release-asset/1405888332/590d41b1-7285-4bb9-aa53-7ba6a06e025b?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-10-09T04%3A38%3A32Z&rscd=attachment%3B+filename%3Dv5ibe_v1.0.1.apk&rsct=application%2Fvnd.android.package-archive&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-10-09T03%3A38%3A09Z&ske=2026-10-09T04%3A38%3A32Z&sks=b&skv=2018-11-09&sig=5eqwu1jbBOXSEIbWaUjd9QXzfF4Jzr6ujURc89JoP2o%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc5MTUyMjE3MiwibmJmIjoxNzkxNTE4NTcyLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.zMinZAg8UbZqbZ0UHYwneynL9ax6haqz1mQioMLA3eI&response-content-disposition=attachment%3B%20filename%3Dv5ibe_v1.0.1.apk&response-content-type=application%2Fvnd.android.package-archive"
+                // href="https://github.com/Pratik98755/v5ibe/releases/download/v1.0.0/v5ibe.apk"
                 download
                 className="rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-zinc-200"
               >
@@ -511,7 +512,8 @@ export default function v5ibe_page() {
           <div className="mt-10 flex justify-center gap-4">
 
             <a
-              href="https://github.com/Pratik98755/v5ibe/releases/download/v1.0.0/v5ibe.apk"
+              href="https://release-assets.githubusercontent.com/github-production-release-asset/1405888332/590d41b1-7285-4bb9-aa53-7ba6a06e025b?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-10-09T04%3A38%3A32Z&rscd=attachment%3B+filename%3Dv5ibe_v1.0.1.apk&rsct=application%2Fvnd.android.package-archive&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-10-09T03%3A38%3A09Z&ske=2026-10-09T04%3A38%3A32Z&sks=b&skv=2018-11-09&sig=5eqwu1jbBOXSEIbWaUjd9QXzfF4Jzr6ujURc89JoP2o%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc5MTUyMjE3MiwibmJmIjoxNzkxNTE4NTcyLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.zMinZAg8UbZqbZ0UHYwneynL9ax6haqz1mQioMLA3eI&response-content-disposition=attachment%3B%20filename%3Dv5ibe_v1.0.1.apk&response-content-type=application%2Fvnd.android.package-archive"
+              // href="https://github.com/Pratik98755/v5ibe/releases/download/v1.0.0/v5ibe.apk"
               download
               className="rounded-full bg-white px-7 py-3 text-sm font-medium text-black transition hover:bg-zinc-200"
             >
