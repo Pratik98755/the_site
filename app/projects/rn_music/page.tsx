@@ -78,13 +78,119 @@
 
 
 
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import SnowCanvas from "@/app/components/SnowCanvas";
+
+const VERSIONS = [
+  {
+    version: "v1.0.1",
+    label: "Latest",
+    url: "https://github.com/Pratik98755/v5ibe/releases/download/v1.0.1/v5ibe_v1.0.1.apk",
+  },
+  {
+    version: "v1.0.0",
+    label: "Previous",
+    url: "https://github.com/Pratik98755/v5ibe/releases/download/v1.0.0/v5ibe.apk",
+  },
+];
+
+function DownloadButton({
+  variant = "primary",
+}: {
+  variant?: "primary" | "outline";
+}) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    const esc = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+
+    document.addEventListener("mousedown", handler);
+    document.addEventListener("keydown", esc);
+    return () => {
+      document.removeEventListener("mousedown", handler);
+      document.removeEventListener("keydown", esc);
+    };
+  }, [open]);
+
+  const base =
+    variant === "primary"
+      ? "rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-zinc-200"
+      : "rounded-full bg-white px-7 py-3 text-sm font-medium text-black transition hover:bg-zinc-200";
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        onClick={() => setOpen((o) => !o)}
+        className={`${base} inline-flex items-center gap-2`}
+      >
+        Download Android App
+        <svg
+          width="12"
+          height="12"
+          viewBox="0 0 12 12"
+          fill="none"
+          className={`transition-transform duration-200 ${open ? "rotate-180" : ""
+            }`}
+        >
+          <path
+            d="M2.5 4.5L6 8l3.5-3.5"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </button>
+
+      {open && (
+        <div className="absolute left-0 z-50 mt-3 w-64 overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950 shadow-2xl shadow-black/50 backdrop-blur">
+          <div className="border-b border-zinc-800 px-4 py-3">
+            <p className="text-xs uppercase tracking-widest text-zinc-500">
+              Select version
+            </p>
+          </div>
+
+          <div className="p-2">
+            {VERSIONS.map((v) => (
+              <a
+                key={v.version}
+                href={v.url}
+                download
+                onClick={() => setOpen(false)}
+                className="group flex items-center justify-between rounded-xl px-3 py-3 transition hover:bg-zinc-900"
+              >
+                <div className="flex flex-col">
+                  <span className="text-sm font-medium text-white">
+                    {v.version}
+                  </span>
+                  <span className="text-xs text-zinc-500">{v.label}</span>
+                </div>
+
+                <span className="text-zinc-600 transition group-hover:text-white">
+                  ↓
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function v5ibe_page() {
   return (
     <main className="min-h-screen bg-black text-white">
-
       {/* Snow background */}
       <div className="pointer-events-none fixed inset-0 z-0">
         <SnowCanvas />
@@ -92,21 +198,18 @@ export default function v5ibe_page() {
 
       {/* ================= HERO ================= */}
       <section className="relative overflow-hidden border-b border-zinc-800">
-
         {/* Background glow */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute left-1/2 top-[-250px] h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-white/[0.04] blur-3xl" />
         </div>
 
         <div className="relative mx-auto max-w-7xl px-6 pb-24 pt-20 md:px-10 md:pt-28">
-
           <div className="mb-8 flex items-center gap-3 text-sm text-zinc-500">
             <span className="h-px w-8 bg-zinc-700" />
             PERSONAL PROJECT · REACT NATIVE
           </div>
 
           <div className="max-w-5xl">
-
             <h1 className="text-5xl font-semibold tracking-tight md:text-7xl lg:text-8xl">
               V5ibe
             </h1>
@@ -136,26 +239,16 @@ export default function v5ibe_page() {
 
             {/* Download */}
             <div className="mt-10 flex flex-wrap items-center gap-4">
-              <a
-                href="https://release-assets.githubusercontent.com/github-production-release-asset/1405888332/590d41b1-7285-4bb9-aa53-7ba6a06e025b?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-10-09T04%3A38%3A32Z&rscd=attachment%3B+filename%3Dv5ibe_v1.0.1.apk&rsct=application%2Fvnd.android.package-archive&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-10-09T03%3A38%3A09Z&ske=2026-10-09T04%3A38%3A32Z&sks=b&skv=2018-11-09&sig=5eqwu1jbBOXSEIbWaUjd9QXzfF4Jzr6ujURc89JoP2o%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc5MTUyMjE3MiwibmJmIjoxNzkxNTE4NTcyLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.zMinZAg8UbZqbZ0UHYwneynL9ax6haqz1mQioMLA3eI&response-content-disposition=attachment%3B%20filename%3Dv5ibe_v1.0.1.apk&response-content-type=application%2Fvnd.android.package-archive"
-                // href="https://github.com/Pratik98755/v5ibe/releases/download/v1.0.0/v5ibe.apk"
-                download
-                className="rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-zinc-200"
-              >
-                Download Android App ↓
-              </a>
-
+              <DownloadButton />
               <span className="text-sm text-zinc-500">
                 Development build
               </span>
             </div>
-
           </div>
 
           {/* Project status */}
           <div className="mt-20 rounded-2xl border border-zinc-800 bg-zinc-950 p-8 md:p-10">
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-
               <div>
                 <p className="text-sm uppercase tracking-widest text-zinc-500">
                   Current status
@@ -175,18 +268,14 @@ export default function v5ibe_page() {
               <div className="shrink-0 rounded-full border border-zinc-800 px-4 py-2 text-sm text-zinc-400">
                 IN DEVELOPMENT
               </div>
-
             </div>
           </div>
-
         </div>
       </section>
 
       {/* ================= OVERVIEW ================= */}
       <section className="mx-auto max-w-7xl px-6 py-24 md:px-10">
-
         <div className="grid gap-16 md:grid-cols-[1fr_1.5fr]">
-
           <div>
             <p className="text-sm uppercase tracking-widest text-zinc-500">
               The idea
@@ -198,7 +287,6 @@ export default function v5ibe_page() {
           </div>
 
           <div className="space-y-6 text-lg leading-relaxed text-zinc-400">
-
             <p>
               V5ibe is an attempt to rethink the way music is browsed
               on mobile. Instead of navigating through traditional
@@ -224,20 +312,14 @@ export default function v5ibe_page() {
               catalog with an interface that feels lightweight,
               visual and effortless to explore.
             </p>
-
           </div>
-
         </div>
-
       </section>
 
       {/* ================= EXPERIENCE ================= */}
       <section className="border-y border-zinc-800 bg-zinc-950">
-
         <div className="mx-auto max-w-7xl px-6 py-24 md:px-10">
-
           <div className="max-w-3xl">
-
             <p className="text-sm uppercase tracking-widest text-zinc-500">
               The experience
             </p>
@@ -251,12 +333,10 @@ export default function v5ibe_page() {
               experience rather than making users constantly
               navigate between screens.
             </p>
-
           </div>
 
           {/* Experience cards */}
           <div className="mt-16 grid gap-6 md:grid-cols-3">
-
             <div className="rounded-2xl border border-zinc-800 bg-black p-8">
               <span className="text-sm text-zinc-500">
                 01 / DISCOVER
@@ -302,20 +382,14 @@ export default function v5ibe_page() {
                 music directly in the app.
               </p>
             </div>
-
           </div>
-
         </div>
-
       </section>
 
       {/* ================= TECHNICAL ================= */}
       <section className="mx-auto max-w-7xl px-6 py-24 md:px-10">
-
         <div className="grid gap-16 md:grid-cols-2 md:items-center">
-
           <div>
-
             <p className="text-sm uppercase tracking-widest text-zinc-500">
               Under the hood
             </p>
@@ -337,18 +411,15 @@ export default function v5ibe_page() {
               pipeline. This layer is still being refined as the
               application develops.
             </p>
-
           </div>
 
           {/* Technical pipeline */}
           <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-8">
-
             <div className="text-sm text-zinc-500">
               MUSIC PIPELINE
             </div>
 
             <div className="mt-8 space-y-3">
-
               {[
                 "Search / Artist Query",
                 "Innertube API",
@@ -356,9 +427,7 @@ export default function v5ibe_page() {
                 "Stream Retrieval",
                 "React Native Player",
               ].map((step, index) => (
-
                 <div key={step}>
-
                   <div className="rounded-xl border border-zinc-800 bg-black p-4">
                     <span className="mr-3 text-zinc-600">
                       0{index + 1}
@@ -372,26 +441,17 @@ export default function v5ibe_page() {
                       ↓
                     </div>
                   )}
-
                 </div>
-
               ))}
-
             </div>
-
           </div>
-
         </div>
-
       </section>
 
       {/* ================= TECH STACK ================= */}
       <section className="border-y border-zinc-800 bg-zinc-950">
-
         <div className="mx-auto max-w-7xl px-6 py-24 md:px-10">
-
           <div className="max-w-3xl">
-
             <p className="text-sm uppercase tracking-widest text-zinc-500">
               Technology
             </p>
@@ -399,11 +459,9 @@ export default function v5ibe_page() {
             <h2 className="mt-4 text-4xl font-semibold md:text-5xl">
               The stack behind V5ibe.
             </h2>
-
           </div>
 
           <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-
             {[
               {
                 title: "Mobile",
@@ -422,7 +480,6 @@ export default function v5ibe_page() {
                 items: "Audio Streaming · Music Player",
               },
             ].map((stack) => (
-
               <div
                 key={stack.title}
                 className="rounded-2xl border border-zinc-800 bg-black p-6"
@@ -435,22 +492,15 @@ export default function v5ibe_page() {
                   {stack.items}
                 </p>
               </div>
-
             ))}
-
           </div>
-
         </div>
-
       </section>
 
       {/* ================= CURRENT STATE ================= */}
       <section className="mx-auto max-w-7xl px-6 py-24 md:px-10">
-
         <div className="grid gap-16 md:grid-cols-2">
-
           <div>
-
             <p className="text-sm uppercase tracking-widest text-zinc-500">
               What&apos;s next?
             </p>
@@ -458,18 +508,15 @@ export default function v5ibe_page() {
             <h2 className="mt-4 text-4xl font-semibold md:text-5xl">
               Still being built.
             </h2>
-
           </div>
 
           <div className="space-y-5">
-
             {[
               "Improve the audio streaming pipeline",
               "Refine the music player experience",
               "Improve search and discovery",
               "Add more playback and library features",
             ].map((item, index) => (
-
               <div
                 key={item}
                 className="flex items-center gap-5 rounded-2xl border border-zinc-800 bg-zinc-950 p-5"
@@ -482,20 +529,14 @@ export default function v5ibe_page() {
                   {item}
                 </span>
               </div>
-
             ))}
-
           </div>
-
         </div>
-
       </section>
 
       {/* ================= FINAL ================= */}
       <section className="border-t border-zinc-800">
-
         <div className="mx-auto max-w-5xl px-6 py-32 text-center md:px-10">
-
           <p className="text-sm uppercase tracking-widest text-zinc-500">
             V5ibe
           </p>
@@ -510,15 +551,7 @@ export default function v5ibe_page() {
           </p>
 
           <div className="mt-10 flex justify-center gap-4">
-
-            <a
-              href="https://release-assets.githubusercontent.com/github-production-release-asset/1405888332/590d41b1-7285-4bb9-aa53-7ba6a06e025b?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-10-09T04%3A38%3A32Z&rscd=attachment%3B+filename%3Dv5ibe_v1.0.1.apk&rsct=application%2Fvnd.android.package-archive&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-10-09T03%3A38%3A09Z&ske=2026-10-09T04%3A38%3A32Z&sks=b&skv=2018-11-09&sig=5eqwu1jbBOXSEIbWaUjd9QXzfF4Jzr6ujURc89JoP2o%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc5MTUyMjE3MiwibmJmIjoxNzkxNTE4NTcyLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.zMinZAg8UbZqbZ0UHYwneynL9ax6haqz1mQioMLA3eI&response-content-disposition=attachment%3B%20filename%3Dv5ibe_v1.0.1.apk&response-content-type=application%2Fvnd.android.package-archive"
-              // href="https://github.com/Pratik98755/v5ibe/releases/download/v1.0.0/v5ibe.apk"
-              download
-              className="rounded-full bg-white px-7 py-3 text-sm font-medium text-black transition hover:bg-zinc-200"
-            >
-              Download Android App ↓
-            </a>
+            <DownloadButton variant="primary" />
 
             <Link
               href="/"
@@ -526,14 +559,9 @@ export default function v5ibe_page() {
             >
               Back to portfolio
             </Link>
-
           </div>
-
         </div>
-
       </section>
-
     </main>
   );
 }
-
