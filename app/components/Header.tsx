@@ -14,7 +14,7 @@ export default function Header() {
         <Link href="/projects/razorscout" className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50">
           RazorScout
         </Link>
-        <Link href="/projects/rn_music" className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50">
+        <Link href="/projects/v5ibe" className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50">
           v5ibe
         </Link>
 
