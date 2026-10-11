@@ -102,7 +102,8 @@ export default function About() {
             </h1>
 
             <p className="mt-8 max-w-3xl text-xl leading-relaxed text-zinc-400 md:text-2xl">
-              I&apos;m Vishal Prasad, a B.Tech student in Electronics
+              I&apos;m   <span style={{ color: '#fff', fontWeight: 'bold' }}>
+              Vishal Prasad</span>, a B.Tech student in Electronics
               &amp; Communication Engineering at Jalpaiguri Government
               Engineering College, interested in software development,
               AI-powered applications, and building products from the ground up.
