@@ -88,7 +88,7 @@ const VERSIONS = [
   {
     version: "v2.0.0",
     label: "Latest",
-    url: "https://github.com/Pratik98755/v5ibe/releases/download/v2.0.0/v5ibe_v2.0.0.apk",
+    url: "https://release-assets.githubusercontent.com/github-production-release-asset/1405888332/ab379002-6bed-4d28-9e6e-cd1157a76965?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-10-16T06%3A39%3A25Z&rscd=attachment%3B+filename%3Dv5ibe_v2.0.0.apk&rsct=application%2Fvnd.android.package-archive&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-10-16T05%3A38%3A28Z&ske=2026-10-16T06%3A39%3A25Z&sks=b&skv=2018-11-09&sig=N1iRcBfU2837szcSUzolNIBlF6%2BrnMWHUIRRXhT28tI%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc5MjEzNDI2NiwibmJmIjoxNzkyMTMwNjY2LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.rn4BRf9l7ppLNi7DTuyqefiFWEjf8xY4eYK4mBqoFvg&response-content-disposition=attachment%3B%20filename%3Dv5ibe_v2.0.0.apk&response-content-type=application%2Fvnd.android.package-archive",
   },
   {
     version: "v1.1.1",
