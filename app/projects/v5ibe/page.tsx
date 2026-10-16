@@ -87,7 +87,7 @@ import SnowCanvas from "@/app/components/SnowCanvas";
 const VERSIONS = [
   {
     version: "v2.0.0",
-    label: "Latest",
+    label: "Latest | Production Release",
     url: "https://github.com/Pratik98755/v5ibe/releases/download/v2.0.0/v5ibe_v2.0.0.apk",
   },
   {
