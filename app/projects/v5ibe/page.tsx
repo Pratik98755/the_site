@@ -77,129 +77,70 @@
 
 
 
-
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import SnowCanvas from "@/app/components/SnowCanvas";
 
-const VERSIONS = [
-  {
-    version: "v2.0.0",
-    label: "Latest | Production Release",
-    url: "https://github.com/Pratik98755/v5ibe/releases/download/v2.0.0/v5ibe_v2.0.0.apk",
-  },
-  {
-    version: "v1.1.1",
-    label: "Previous",
-    url: "https://github.com/Pratik98755/v5ibe/releases/download/v1.1.1/v5ibe_v1.1.1.apk",
-  },
-  {
-    version: "v1.1.0",
-    label: "Previous",
-    url: "https://github.com/Pratik98755/v5ibe/releases/download/v1.1.0/v5ibe_1.1.0.apk",
-  },
-  {
-    version: "v1.0.1",
-    label: "Previous",
-    url: "https://github.com/Pratik98755/v5ibe/releases/download/v1.0.1/v5ibe_v1.0.1.apk",
-  },
-  {
-    version: "v1.0.0",
-    label: "Previous",
-    url: "https://github.com/Pratik98755/v5ibe/releases/download/v1.0.0/v5ibe.apk",
-  },
+const DOWNLOAD_HREF = "https://v5ibe.pages.dev";
+
+const DEPENDENCIES = [
+  "expo@~57.0.27",
+  "react-native@0.86.3",
+  "react@19.2.3",
+  "typescript@~6.0.3",
+  "youtubei.js@^18.1.0",
+  "ytdlp-react-native@^1.0.0",
+  "react-native-nitro-player@^1.6.1",
+  "react-native-nitro-modules@^0.37.1",
+  "firebase@^13.0.0",
+  "axios@^1.20.0",
+  "@react-navigation/native@^7.5.0",
+  "@react-navigation/native-stack@^7.20.0",
+  "@react-navigation/bottom-tabs@^7.20.0",
+  "@react-navigation/material-top-tabs@^7.8.0",
+  "@react-native-async-storage/async-storage@2.2.0",
+  "@react-native-community/slider@5.2.0",
+  "@react-native-masked-view/masked-view@0.3.2",
+  "react-native-bootsplash@^6.3.10",
+  "react-native-fs@^2.20.0",
+  "react-native-safe-area-context@~5.7.0",
+  "react-native-screens@~4.26.0",
+  "expo-constants@~57.0.22",
+  "expo-device@~57.0.2",
+  "expo-file-system@~57.0.7",
+  "expo-intent-launcher@~57.0.1",
+  "expo-linear-gradient@~57.0.2",
+  "expo-notifications@~57.0.22",
+  "expo-status-bar@~57.0.1",
 ];
 
-function DownloadButton({
+function DownloadLink({
   variant = "primary",
 }: {
   variant?: "primary" | "outline";
 }) {
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!open) return;
-    const handler = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) {
-        setOpen(false);
-      }
-    };
-    const esc = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
-
-    document.addEventListener("mousedown", handler);
-    document.addEventListener("keydown", esc);
-    return () => {
-      document.removeEventListener("mousedown", handler);
-      document.removeEventListener("keydown", esc);
-    };
-  }, [open]);
-
   const base =
     variant === "primary"
       ? "rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-zinc-200"
       : "rounded-full bg-white px-7 py-3 text-sm font-medium text-black transition hover:bg-zinc-200";
 
   return (
-    <div ref={ref} className="relative">
-      <button
-        onClick={() => setOpen((o) => !o)}
-        className={`${base} inline-flex items-center gap-2`}
-      >
-        Download Android App
-        <svg
-          width="12"
-          height="12"
-          viewBox="0 0 12 12"
-          fill="none"
-          className={`transition-transform duration-200 ${open ? "rotate-180" : ""
-            }`}
-        >
-          <path
-            d="M2.5 4.5L6 8l3.5-3.5"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </button>
-
-      {open && (
-        <div className="absolute left-0 z-50 mt-3 w-64 overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950 shadow-2xl shadow-black/50 backdrop-blur">
-          <div className="border-b border-zinc-800 px-4 py-3">
-            <p className="text-xs uppercase tracking-widest text-zinc-500">
-              Select version
-            </p>
-          </div>
-
-          <div className="p-2">
-            {VERSIONS.map((v) => (
-              <a
-                key={v.version}
-                href={v.url}
-                download
-                onClick={() => setOpen(false)}
-                className="group flex items-center justify-between rounded-xl px-3 py-3 transition hover:bg-zinc-900"
-              >
-                <div className="flex flex-col">
-                  <span className="text-sm font-medium text-white">
-                    {v.version}
-                  </span>
-                  <span className="text-xs text-zinc-500">{v.label}</span>
-                </div>
-
-                <span className="text-zinc-600 transition group-hover:text-white">
-                  ↓
-                </span>
-              </a>
-            ))}
-          </div>
-        </div>
-      )}
-    </div>
+    <Link
+      href={DOWNLOAD_HREF}
+      className={`${base} inline-flex items-center gap-2`}
+    >
+      Visit v5ibe page to download
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+        <path
+          d="M4.5 2.5L8 6l-3.5 3.5"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </Link>
   );
 }
 
@@ -229,6 +170,11 @@ export default function v5ibe_page() {
               V5ibe
             </h1>
 
+            <p className="mt-6 text-2xl font-medium tracking-tight md:text-4xl">
+              Proudly presenting <span className="text-zinc-500">v2.0.0</span>{" "}
+              — the first production release.
+            </p>
+
             <p className="mt-6 max-w-3xl text-xl leading-relaxed text-zinc-400 md:text-2xl">
               A React Native music experience built around discovering
               songs through a simple, immersive scrolling interface.
@@ -238,10 +184,13 @@ export default function v5ibe_page() {
             <div className="mt-8 flex flex-wrap gap-3">
               {[
                 "React Native",
-                "JavaScript",
-                "YouTube Music",
+                "Expo",
+                "TypeScript",
                 "Innertube API",
-                "Music Discovery",
+                "yt-dlp",
+                "Nitro Player",
+                "10-Band EQ",
+                "Offline Downloads",
               ].map((tag) => (
                 <span
                   key={tag}
@@ -254,9 +203,9 @@ export default function v5ibe_page() {
 
             {/* Download */}
             <div className="mt-10 flex flex-wrap items-center gap-4">
-              <DownloadButton />
+              <DownloadLink />
               <span className="text-sm text-zinc-500">
-                Development build
+                v2.0.0 · Android · Production release
               </span>
             </div>
           </div>
@@ -270,24 +219,144 @@ export default function v5ibe_page() {
                 </p>
 
                 <h2 className="mt-3 text-2xl font-semibold">
-                  App development is in progress.
+                  v2.0.0 is live.
                 </h2>
 
                 <p className="mt-3 max-w-2xl leading-relaxed text-zinc-400">
-                  The core music discovery experience is being built,
-                  while the streaming layer and backend infrastructure
-                  are still under active development.
+                  Search, discovery, streaming, playback, downloads and a
+                  full 10-band equalizer now work together end to end.
+                  V5ibe has moved past development builds and into its
+                  first production release.
                 </p>
               </div>
 
               <div className="shrink-0 rounded-full border border-zinc-800 px-4 py-2 text-sm text-zinc-400">
-                IN DEVELOPMENT
+                PRODUCTION RELEASE
               </div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* ================= FEATURE HIGHLIGHTS ================= */}
+      <section className="border-b border-zinc-800 bg-zinc-950">
+        <div className="mx-auto max-w-7xl px-6 py-24 md:px-10">
+          <div className="max-w-3xl">
+            <p className="text-sm uppercase tracking-widest text-zinc-500">
+              Feature highlights
+            </p>
+
+            <h2 className="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">
+              Everything, in one player.
+            </h2>
+
+            <p className="mt-5 text-lg leading-relaxed text-zinc-400">
+              v2.0.0 brings the full listening experience together —
+              equalizer, local playback, downloads, discovery, a queue
+              that fills itself, and a direct line between you and the
+              app.
+            </p>
+          </div>
+
+          {/* Selling points */}
+          <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="rounded-2xl border border-zinc-800 bg-black p-8">
+              <span className="text-sm text-zinc-500">
+                01 / EQUALIZER
+              </span>
+
+              <h3 className="mt-5 text-2xl font-semibold">
+                10-band equalizer
+              </h3>
+
+              <p className="mt-4 leading-relaxed text-zinc-400">
+                Shape your sound with a full 10-band EQ powered by
+                Nitro Player, right inside the app.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-zinc-800 bg-black p-8">
+              <span className="text-sm text-zinc-500">
+                02 / LOCAL PLAYER
+              </span>
+
+              <h3 className="mt-5 text-2xl font-semibold">
+                Built-in local player
+              </h3>
+
+              <p className="mt-4 leading-relaxed text-zinc-400">
+                Play the audio already on your device without ever
+                leaving V5ibe — no separate music app needed.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-zinc-800 bg-black p-8">
+              <span className="text-sm text-zinc-500">
+                03 / DOWNLOADS
+              </span>
+
+              <h3 className="mt-5 text-2xl font-semibold">
+                1-click download
+              </h3>
+
+              <p className="mt-4 leading-relaxed text-zinc-400">
+                Save any song to your device with a single tap and keep
+                it available for offline listening.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-zinc-800 bg-black p-8">
+              <span className="text-sm text-zinc-500">
+                04 / DISCOVERY
+              </span>
+
+              <h3 className="mt-5 text-2xl font-semibold">
+                Explore, search &amp; trending
+              </h3>
+
+              <p className="mt-4 leading-relaxed text-zinc-400">
+                Search the full catalog or browse trending content to
+                see what&apos;s moving right now.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-zinc-800 bg-black p-8">
+              <span className="text-sm text-zinc-500">
+                05 / QUEUE
+              </span>
+
+              <h3 className="mt-5 text-2xl font-semibold">
+                Auto-queued recommendations
+              </h3>
+
+              <p className="mt-4 leading-relaxed text-zinc-400">
+                Recommended songs are added to your queue
+                automatically, so playback never has to stop.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-zinc-800 bg-black p-8">
+              <span className="text-sm text-zinc-500">
+                06 / STAY IN TOUCH
+              </span>
+
+              <h3 className="mt-5 text-2xl font-semibold">
+                Notices &amp; feedback
+              </h3>
+
+              <p className="mt-4 leading-relaxed text-zinc-400">
+                Notices from the developer arrive straight in the app,
+                including push notifications for releases and updates.
+              </p>
+
+              <p className="mt-4 leading-relaxed text-zinc-400">
+                Send your own feedback too — ideas, queries or bug
+                reports — without ever leaving V5ibe.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
       {/* ================= OVERVIEW ================= */}
       <section className="mx-auto max-w-7xl px-6 py-24 md:px-10">
         <div className="grid gap-16 md:grid-cols-[1fr_1.5fr]">
@@ -323,9 +392,9 @@ export default function v5ibe_page() {
             </p>
 
             <p>
-              The goal is to combine the depth of an existing music
-              catalog with an interface that feels lightweight,
-              visual and effortless to explore.
+              With v2.0.0, that idea is finally complete: discovery
+              and playback live in the same place, and the scroll
+              never breaks.
             </p>
           </div>
         </div>
@@ -392,9 +461,9 @@ export default function v5ibe_page() {
               </h3>
 
               <p className="mt-4 leading-relaxed text-zinc-400">
-                The application is being developed around a
-                dedicated streaming layer for playing discovered
-                music directly in the app.
+                The streaming layer is in place — discovered songs
+                now play directly inside the app through a
+                dedicated native player.
               </p>
             </div>
           </div>
@@ -421,10 +490,10 @@ export default function v5ibe_page() {
             </p>
 
             <p className="mt-5 text-lg leading-relaxed text-zinc-400">
-              The project also includes a JavaScript backend that
-              handles parts of the music retrieval and streaming
-              pipeline. This layer is still being refined as the
-              application develops.
+              Streams are then resolved on device with yt-dlp and
+              handed to a Nitro Player instance, which keeps
+              playback native, low-latency and independent of any
+              in-app browser view.
             </p>
           </div>
 
@@ -437,10 +506,10 @@ export default function v5ibe_page() {
             <div className="mt-8 space-y-3">
               {[
                 "Search / Artist Query",
-                "Innertube API",
+                "Innertube API · youtubei.js",
                 "Song & Artist Metadata",
-                "Stream Retrieval",
-                "React Native Player",
+                "Stream Retrieval · yt-dlp",
+                "Nitro Player · React Native",
               ].map((step, index) => (
                 <div key={step}>
                   <div className="rounded-xl border border-zinc-800 bg-black p-4">
@@ -480,19 +549,19 @@ export default function v5ibe_page() {
             {[
               {
                 title: "Mobile",
-                items: "React Native",
+                items: "React Native 0.86 · Expo SDK 57",
               },
               {
-                title: "API",
-                items: "Innertube · YouTube Music",
+                title: "Music API",
+                items: "youtubei.js · Innertube",
               },
               {
-                title: "Backend",
-                items: "Node.js · JavaScript",
+                title: "Streaming",
+                items: "yt-dlp · Nitro Player",
               },
               {
-                title: "Playback",
-                items: "Audio Streaming · Music Player",
+                title: "Data",
+                items: "Firebase · AsyncStorage",
               },
             ].map((stack) => (
               <div
@@ -509,6 +578,24 @@ export default function v5ibe_page() {
               </div>
             ))}
           </div>
+
+          {/* Full dependency list */}
+          <div className="mt-6 rounded-2xl border border-zinc-800 bg-black p-8">
+            <p className="text-sm text-zinc-500">
+              DEPENDENCIES · v2.0.0
+            </p>
+
+            <div className="mt-6 flex flex-wrap gap-2">
+              {DEPENDENCIES.map((dep) => (
+                <span
+                  key={dep}
+                  className="rounded-full border border-zinc-800 bg-zinc-950 px-3 py-1.5 text-xs text-zinc-400"
+                >
+                  {dep}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -521,16 +608,16 @@ export default function v5ibe_page() {
             </p>
 
             <h2 className="mt-4 text-4xl font-semibold md:text-5xl">
-              Still being built.
+              v2.0.0 shipped. Work continues.
             </h2>
           </div>
 
           <div className="space-y-5">
             {[
-              "Improve the audio streaming pipeline",
-              "Refine the music player experience",
-              "Improve search and discovery",
-              "Add more playback and library features",
+              "Polish the player and queue experience",
+              "Expand search and discovery",
+              "Improve stream reliability and caching",
+              "Add library, playlists and offline support",
             ].map((item, index) => (
               <div
                 key={item}
@@ -561,12 +648,11 @@ export default function v5ibe_page() {
           </h2>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-zinc-400">
-            V5ibe is still under development, but the current
-            Android build is available to try.
+            What are you waiting for? Give it a try!
           </p>
 
           <div className="mt-10 flex justify-center gap-4">
-            <DownloadButton variant="primary" />
+            <DownloadLink variant="primary" />
 
             <Link
               href="/"
